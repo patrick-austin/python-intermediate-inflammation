@@ -2,6 +2,9 @@
 .vscode/
 .idea/
 
+# Virtual environments
+venv/
+
 # Intermediate Coverage file
 .coverage
 
