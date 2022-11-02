@@ -2,7 +2,7 @@ name: CI
 # Specify which GitHub events will trigger a CI build
 on: push
 # Define a single job, build
-job:
+jobs:
   build:
     # Specify an OS for the runner
     runs-on: ubuntu-latest
