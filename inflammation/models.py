@@ -52,3 +52,13 @@ def daily_min(data):
         numpy.ndarray: 1D array of data averaged over its 0th axis
     """
     return np.min(data, axis=0)
+
+
+def patient_normalise(data):
+    """Normalise patient data from a 2D array of inflammation data.
+
+    Args:
+        data (_type_): _description_
+    """
+    maxes = np.max(data, axis=1)
+    return data / maxes[:, np.newaxis]
