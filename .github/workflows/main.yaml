@@ -4,18 +4,23 @@ on: push
 # Define a single job, build
 jobs:
   build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: [3.8, 3.9]
+
     # Specify an OS for the runner
-    runs-on: ubuntu-latest
+    runs-on: ${{matrix.os}}
     #Define steps
     steps:
       # Firstly, checkout repo
       - name: Checkout repository
         uses: actions/checkout@v2
       # Set up Python env
-      - name: Setup Python 3.9
+      - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: ${{matrix.python-version}}
       # Install dependencies
       - name: Install Python dependencies
         run: |
