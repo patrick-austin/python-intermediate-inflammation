@@ -2,6 +2,7 @@
 
 import numpy as np
 import numpy.testing as npt
+import pytest
 from inflammation.models import daily_mean, daily_max, daily_min
 
 
@@ -24,9 +25,11 @@ def assert_result(test_function, test_input, test_result):
     npt.assert_array_equal(test_function(test_input), test_result)
 
 
-def test_daily_max():
-    assert_result(daily_max, ZEROES, [0, 0])
-    assert_result(daily_max, INTEGERS, [5, 6])
+@pytest.mark.parametrize(
+    "test, expected", [(ZEROES, [0, 0]), (INTEGERS, [5, 6])]
+)
+def test_daily_max(test, expected):
+    assert_result(daily_max, test, expected)
 
 
 def test_daily_min():
